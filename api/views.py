@@ -129,7 +129,7 @@ def list_comments(request, post_id):
     """
     Get all approved comments for a blog post.
     
-    GET /api/posts/{post_id}/comments/
+    GET /api/posts/{post_id}/comments/list/
     """
     blog_post = get_object_or_404(BlogPost, id=post_id)
     
