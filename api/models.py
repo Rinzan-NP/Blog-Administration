@@ -74,8 +74,6 @@ class BlogPost(models.Model):
         default='draft'
     )
     published_at = models.DateTimeField(blank=True, null=True)
-   
-    
     comments_enabled = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

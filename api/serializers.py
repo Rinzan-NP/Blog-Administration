@@ -112,21 +112,6 @@ class BlogPostSerializer(serializers.ModelSerializer):
         
         return instance
 
-    def create(self, validated_data):
-        """Create a new blog post"""
-        request = self.context.get('request')
-        if request and request.user:
-            validated_data['created_by'] = request.user
-            validated_data['updated_by'] = request.user
-        return super().create(validated_data)
-
-    def update(self, instance, validated_data):
-        """Update an existing blog post"""
-        request = self.context.get('request')
-        if request and request.user:
-            validated_data['updated_by'] = request.user
-        return super().update(instance, validated_data)
-
 
 class BlogPostListSerializer(serializers.ModelSerializer):
     """Lightweight serializer for blog post lists"""
