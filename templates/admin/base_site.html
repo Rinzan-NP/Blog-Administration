@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></div>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block dark-mode-vars %}
+  {{ block.super }}
+  <script>
+  // Set default theme to light before theme.js initializes
+  (function() {
+      // Check if theme is already set in localStorage
+      var currentTheme = localStorage.getItem('theme');
+      if (!currentTheme) {
+          // Set default to light theme
+          localStorage.setItem('theme', 'light');
+      }
+      // Ensure light theme is applied immediately
+      if (currentTheme !== 'dark') {
+          document.documentElement.setAttribute('data-theme', 'light');
+      }
+  })();
+  </script>
+{% endblock %}
